@@ -1,4 +1,5 @@
 use bevy::{
+    diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin},
     prelude::*,
     sprite::{
         collide_aabb::{collide, Collision},
@@ -28,6 +29,8 @@ fn main() {
         .add_event::<CollisionEvent>()
         .insert_resource(FixedTime::new_from_secs(1.0 / 60.0))
         .add_plugins(DefaultPlugins)
+        .add_plugins(LogDiagnosticsPlugin::default())
+        .add_plugins(FrameTimeDiagnosticsPlugin::default())
         .add_systems(Startup, setup)
         .add_systems(
             FixedUpdate,
